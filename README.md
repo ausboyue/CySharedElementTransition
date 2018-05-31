@@ -28,6 +28,6 @@ dependencies {
 
 Cheny - @ausboyue on GitHub, @icheny.cn
 
-#Other
+# Other
 
 Please give me some time to update the documentation.
