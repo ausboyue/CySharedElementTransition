@@ -65,7 +65,7 @@ allprojects {
 
 # Bugs Report
 
-If you find any bug when using it, please contact [me](mailto:ausboyue@qq.com). Thanks for helping us making better.
+If you find any bug when using it, please contact [me](mailto:ausboyue@qq.com). Thanks for helping me making better.
 
 # Author
 
