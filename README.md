@@ -27,14 +27,36 @@ dependencies {
 ## Friendly Hints
 **If you can't download it, maybe you have used the Google's repository that you can't connect to the Google server.Please open the proxy or top the target repository.As follows：**
 ```xml
-allprojects {
-    repositories {
-        maven { url 'https://jitpack.io' } // target repository,be top
-        jcenter()
-        google() // Google's repository
+    allprojects {
+        repositories {
+            maven { url 'https://jitpack.io' } // target repository,be top
+            jcenter()
+            google() // Google's repository
+        }
     }
-}
 ```
+
+## Download from Maven
+
+Add the JitPack repository to your build file:
+```xml
+	<repositories>
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
+	</repositories>
+```
+
+Add the dependency:
+```xml
+	<dependency>
+	    <groupId>com.github.User</groupId>
+	    <artifactId>Repo</artifactId>
+	    <version>Tag</version>
+	</dependency>
+```
+
 # Get Started
 
 **1. ActivityA jump to ActivityB，when need use "SharedElementTransition":**
