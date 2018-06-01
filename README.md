@@ -9,19 +9,19 @@ A compat library of android shared-element transition for lower api.
 
 Add to your root build.gradle:
 ```xml
-allprojects {
-    repositories {
-        ...
-        maven { url 'https://jitpack.io' }
-    }
-}
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
 ```
 
 Add the dependency:
 ```xml
-dependencies {
-    implementation 'com.github.ausboyue:CySharedElementTransition:1.0.0'
-}
+	dependencies {
+	        implementation 'com.github.ausboyue:CySharedElementTransition:1.0.0'
+	}
 ```
 
 ## Friendly Hints
@@ -51,9 +51,9 @@ Add the JitPack repository to your build file:
 Add the dependency:
 ```xml
 	<dependency>
-	    <groupId>com.github.User</groupId>
-	    <artifactId>Repo</artifactId>
-	    <version>Tag</version>
+	    <groupId>com.github.ausboyue</groupId>
+	    <artifactId>CySharedElementTransition</artifactId>
+	    <version>1.0.0</version>
 	</dependency>
 ```
 
