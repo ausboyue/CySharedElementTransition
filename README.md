@@ -96,7 +96,7 @@ Cheny - @[ausboyue on GitHub](https://github.com/ausboyue/), @[www.icheny.cn](ht
 # Donate 
 If you think it's good......
 
-<img src="https://media.icheny.cn/image/alipayAndwxPay.jpg" width="500" >
+<img src="https://media.icheny.cn/image/alipayAndwxPaySmall.jpg" width="500" >
 
 # Other
 
