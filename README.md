@@ -20,7 +20,7 @@ allprojects {
 Add the dependency:
 ```xml
 dependencies {
-        implementation 'com.github.ausboyue:CySharedElementTransition:1.0.0'
+        implementation 'com.github.ausboyue:CySharedElementTransition:1.0.1'
 }
 ```
 
