@@ -63,7 +63,7 @@ Add the dependency:
 
 - ActivityA edit code as below:
 ``` java
-    ElementTransition.startActivity(intent, activityA, view1, view2, view...);
+    CySharedElementTransition.startActivity(intent, activityA, view1, view2, view...);
 ```
 - ActivityB edit code as below:
 ``` java
@@ -71,7 +71,7 @@ Add the dependency:
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ......
-        ElementTransition.runEnterAnim(activityB);
+        CySharedElementTransition.runEnterAnim(activityB);
         ......
     }
 ```
@@ -81,7 +81,7 @@ Add the dependency:
 ``` java
     @Override
     public void onBackPressed() {
-        ElementTransition.runExitAnim(activityB);
+        CySharedElementTransition.runExitAnim(activityB);
     }
 ```
 
