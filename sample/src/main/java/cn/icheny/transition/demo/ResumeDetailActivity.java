@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import cn.icheny.transition.ElementTransition;
+import cn.icheny.transition.CySharedElementTransition;
 
 /**
  * 简历详情
@@ -83,7 +83,7 @@ public class ResumeDetailActivity extends AppCompatActivity {
         /**
          * 共享元素过渡动画
          */
-        ElementTransition.runEnterAnim(this, 1000, new AnimatorListenerAdapter() {
+        CySharedElementTransition.runEnterAnim(this, 1000, new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
@@ -126,7 +126,7 @@ public class ResumeDetailActivity extends AppCompatActivity {
     }
 
     private void back() {
-        ElementTransition.runExitAnim(this, 1000);
+        CySharedElementTransition.runExitAnim(this, 1000);
 
         /**
          * 收起头背景

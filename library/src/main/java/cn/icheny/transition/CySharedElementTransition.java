@@ -13,16 +13,16 @@ import android.view.animation.LinearInterpolator;
 import java.util.ArrayList;
 
 /**
- * 元素转场工具
+ * Element transition tool
  *
  * @author www.icheny.cn
  * @date 2018.05.31
  */
-public class ElementTransition {
+public class CySharedElementTransition {
 
     public static final String TRANSITION_MATERIALS = "TRANSITION_MATERIALS";//Extra key
-    public static final long DEFAULT_TRANSITION_DURATION = 800;// 默认转场时间800毫秒
-    public static final TimeInterpolator DEFAULT_TIMEINTERPOLATOR = new LinearInterpolator();// 默认匀速度
+    public static final long DEFAULT_TRANSITION_DURATION = 800;// default 800 milliseconds
+    public static final TimeInterpolator DEFAULT_TIMEINTERPOLATOR = new LinearInterpolator();// default uniform motion
 
 
     public static void startActivity(@NonNull Intent intent, @NonNull Activity activity, @NonNull View... views) {
@@ -33,7 +33,7 @@ public class ElementTransition {
         TransitionMaterials materials = TransitionMaterials.createMaterials(views);
         intent.putParcelableArrayListExtra(TRANSITION_MATERIALS, materials.getViewAttrs());
         activity.startActivityForResult(intent, requestCode);
-        activity.overridePendingTransition(0, 0);//禁止系统默认转场动画
+        activity.overridePendingTransition(0, 0);//Disable system default transition animation
     }
 
 
@@ -136,6 +136,7 @@ public class ElementTransition {
 
         ArrayList<ViewAttrs> attrs = activity.getIntent().getParcelableArrayListExtra(TRANSITION_MATERIALS);
         if (null == attrs || attrs.isEmpty()) {
+            activity.finish();//v1.0.1版本添加，防止没有过度元素当前Activity关闭不了，开放系统自带过度动画
             return;
         }
 
@@ -165,7 +166,7 @@ public class ElementTransition {
             @Override
             public void run() {
                 activity.finish();
-                activity.overridePendingTransition(0, 0);//禁止系统默认转场动画
+                activity.overridePendingTransition(0, 0);//Disable system default transition animation
             }
         }, duration);
     }

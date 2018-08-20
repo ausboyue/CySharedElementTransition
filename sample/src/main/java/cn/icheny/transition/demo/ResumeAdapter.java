@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import cn.icheny.transition.ElementTransition;
+import cn.icheny.transition.CySharedElementTransition;
 
 
 /**
@@ -52,7 +52,7 @@ public class ResumeAdapter extends RecyclerView.Adapter<ResumeAdapter.ResumeView
                 Activity activity = (Activity) mContext;
                 Intent intent = new Intent(activity, ResumeDetailActivity.class);
                 intent.putExtra("resume", resume);
-                ElementTransition.startActivity(intent, activity, holder.iv_head, holder.tv_name, holder.tv_desc);
+                CySharedElementTransition.startActivity(intent, activity, holder.iv_head, holder.tv_name, holder.tv_desc);
             }
         });
     }

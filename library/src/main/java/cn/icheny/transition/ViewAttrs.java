@@ -4,18 +4,18 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * 用于转场动画所需的View属性
+ * View's attributes required for transition animation
  *
  * @author www.icheny.cn
  * @date 2018.05.31
  */
 public class ViewAttrs implements Parcelable {
-    private int id; //View id
-    private float alpha;//透明度值
-    private int screenX;//View左上角在屏幕中的X坐标
-    private int screenY;//View左上角在屏幕中的Y坐标
-    private int width;//View可视宽度
-    private int height;//View可视高度
+    private int id; //View's id
+    private float alpha;//View's alpha value
+    private int screenX;//View's X coordinate on screen
+    private int screenY;//View's Y coordinate on screen
+    private int width;//View's visible width
+    private int height;//View's visible height
 
 
     public ViewAttrs(int id, float alpha, int screenX, int screenY, int width, int height) {
@@ -26,6 +26,9 @@ public class ViewAttrs implements Parcelable {
         this.width = width;
         this.height = height;
     }
+
+    /****************** Getter And Setter  Methods ******************/
+
 
     public int getId() {
         return id;
