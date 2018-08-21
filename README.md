@@ -104,7 +104,7 @@ Please give me some time to update the documentation.
 
 # Release note
 ## 1.0.1
- - release first version v1.0.1 
+ - release version v1.0.1 
  - fix one bug
 
 ## 1.0.0
