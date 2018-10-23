@@ -93,11 +93,6 @@ If you find any bug when using it, please contact [me](mailto:ausboyue@qq.com). 
 
 Cheny - @[ausboyue on GitHub](https://github.com/ausboyue/), @[www.icheny.cn](http://www.icheny.cn)
 
-# Donate 
-If you think it's good......
-
-<img src="https://media.icheny.cn/image/alipayAndwxPaySmall.jpg" width="500" >
-
 # Other
 
 Please give me some time to update the documentation.
