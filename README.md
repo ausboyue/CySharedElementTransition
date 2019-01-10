@@ -1,5 +1,7 @@
-# CySharedElementTransition
+# CySharedElementTransition ![](https://jitpack.io/v/ausboyue/CySharedElementTransition.svg)
+
 A compat library of android shared-element transition for lower api.
+
 一个为Android较低版本api提供Android共享元素转场动画的兼容库。
 
 ## ScreenShot
