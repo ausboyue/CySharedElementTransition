@@ -6,6 +6,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.LinearInterpolator;
@@ -18,22 +20,52 @@ import java.util.ArrayList;
  * @author www.icheny.cn
  * @date 2018.05.31
  */
-public class CySharedElementTransition {
+public class CyTransition {
 
-    public static final String TRANSITION_MATERIALS = "TRANSITION_MATERIALS";//Extra key
-    public static final long DEFAULT_TRANSITION_DURATION = 800;// default 800 milliseconds
-    public static final TimeInterpolator DEFAULT_TIMEINTERPOLATOR = new LinearInterpolator();// default uniform motion
+    private static final String TRANSITION_MATERIALS = "CY_TRANSITION_TRANSITION_MATERIALS";//Extra key
+    private static final long DEFAULT_TRANSITION_DURATION = 600;// default 600 milliseconds
+    private static final TimeInterpolator DEFAULT_TIME_INTERPOLATOR = new LinearInterpolator();// default uniform motion
 
 
-    public static void startActivity(@NonNull Intent intent, @NonNull Activity activity, @NonNull View... views) {
-        startActivityForResult(intent, -1, activity, views);
+    public static void startActivity(@NonNull Intent intent, @NonNull Activity act, @NonNull View... views) {
+        startActivityForResult(intent, -1, act, views);
+    }
+
+    public static void startActivity(@NonNull Intent intent, @NonNull Fragment frag, @NonNull View... views) {
+        startActivityForResult(intent, -1, frag, views);
+    }
+
+    public static void startActivity(@NonNull Intent intent, @NonNull android.app.Fragment frag, @NonNull View... views) {
+        startActivityForResult(intent, -1, frag, views);
     }
 
     public static void startActivityForResult(@NonNull Intent intent, int requestCode, @NonNull Activity activity, @NonNull View... views) {
-        TransitionMaterials materials = TransitionMaterials.createMaterials(views);
+        Materials materials = Materials.createMaterials(views);
         intent.putParcelableArrayListExtra(TRANSITION_MATERIALS, materials.getViewAttrs());
         activity.startActivityForResult(intent, requestCode);
-        activity.overridePendingTransition(0, 0);//Disable system default transition animation
+        // Disable system default transition animation
+        activity.overridePendingTransition(0, 0);
+    }
+
+    public static void startActivityForResult(@NonNull Intent intent, int requestCode, @NonNull Fragment frag, @NonNull View... views) {
+        Materials materials = Materials.createMaterials(views);
+        intent.putParcelableArrayListExtra(TRANSITION_MATERIALS, materials.getViewAttrs());
+        frag.startActivityForResult(intent, requestCode);
+        final Activity activity = frag.getActivity();
+        if (activity != null) {
+            // Disable system default transition animation
+            activity.overridePendingTransition(0, 0);
+        }
+    }
+    public static void startActivityForResult(@NonNull Intent intent, int requestCode, @NonNull android.app.Fragment frag, @NonNull View... views) {
+        Materials materials = Materials.createMaterials(views);
+        intent.putParcelableArrayListExtra(TRANSITION_MATERIALS, materials.getViewAttrs());
+        frag.startActivityForResult(intent, requestCode);
+        final Activity activity = frag.getActivity();
+        if (activity != null) {
+            // Disable system default transition animation
+            activity.overridePendingTransition(0, 0);
+        }
     }
 
 
@@ -42,11 +74,11 @@ public class CySharedElementTransition {
     }
 
     public static void runEnterAnim(Activity activity, long duration) {
-        runEnterAnim(activity, duration, DEFAULT_TIMEINTERPOLATOR);
+        runEnterAnim(activity, duration, DEFAULT_TIME_INTERPOLATOR);
     }
 
     public static void runEnterAnim(Activity activity, Animator.AnimatorListener listener) {
-        runEnterAnim(activity, DEFAULT_TRANSITION_DURATION, DEFAULT_TIMEINTERPOLATOR, listener);
+        runEnterAnim(activity, DEFAULT_TRANSITION_DURATION, DEFAULT_TIME_INTERPOLATOR, listener);
     }
 
     public static void runEnterAnim(Activity activity, long duration, TimeInterpolator interpolator) {
@@ -54,7 +86,7 @@ public class CySharedElementTransition {
     }
 
     public static void runEnterAnim(Activity activity, long duration, Animator.AnimatorListener listener) {
-        runEnterAnim(activity, duration, DEFAULT_TIMEINTERPOLATOR, listener);
+        runEnterAnim(activity, duration, DEFAULT_TIME_INTERPOLATOR, listener);
     }
 
     /**
@@ -67,7 +99,7 @@ public class CySharedElementTransition {
      */
     public static void runEnterAnim(Activity activity, final long duration, final TimeInterpolator interpolator, final Animator.AnimatorListener listener) {
 
-        ArrayList<ViewAttrs> attrs = activity.getIntent().getParcelableArrayListExtra(TRANSITION_MATERIALS);
+        final ArrayList<ViewAttrs> attrs = activity.getIntent().getParcelableArrayListExtra(TRANSITION_MATERIALS);
         if (null == attrs || attrs.isEmpty()) {
             return;
         }
@@ -88,8 +120,8 @@ public class CySharedElementTransition {
                     view.setPivotY(0);
                     view.setTranslationX(attr.getScreenX() - location[0]);
                     view.setTranslationY(attr.getScreenY() - location[1]);
-                    view.setScaleX(attr.getWidth() * 1.00f / view.getWidth());
-                    view.setScaleY(attr.getHeight() * 1.00f / view.getHeight());
+                    view.setScaleX(attr.getWidth() * 1.0f / view.getWidth());
+                    view.setScaleY(attr.getHeight() * 1.0f / view.getHeight());
                     view.setAlpha(attr.getAlpha());
 
                     float srcAlpha = view.getAlpha();
@@ -113,11 +145,11 @@ public class CySharedElementTransition {
     }
 
     public static void runExitAnim(Activity activity, long duration) {
-        runExitAnim(activity, duration, DEFAULT_TIMEINTERPOLATOR);
+        runExitAnim(activity, duration, DEFAULT_TIME_INTERPOLATOR);
     }
 
     public static void runExitAnim(Activity activity, long duration, Animator.AnimatorListener listener) {
-        runExitAnim(activity, duration, DEFAULT_TIMEINTERPOLATOR, listener);
+        runExitAnim(activity, duration, DEFAULT_TIME_INTERPOLATOR, listener);
     }
 
     public static void runExitAnim(Activity activity, long duration, TimeInterpolator interpolator) {
@@ -132,9 +164,10 @@ public class CySharedElementTransition {
      * @param interpolator
      * @param listener
      */
-    public static void runExitAnim(final Activity activity, final long duration, final TimeInterpolator interpolator, final Animator.AnimatorListener listener) {
+    public static void runExitAnim(final Activity activity, final long duration,
+                                   final TimeInterpolator interpolator, final Animator.AnimatorListener listener) {
 
-        ArrayList<ViewAttrs> attrs = activity.getIntent().getParcelableArrayListExtra(TRANSITION_MATERIALS);
+        final ArrayList<ViewAttrs> attrs = activity.getIntent().getParcelableArrayListExtra(TRANSITION_MATERIALS);
         if (null == attrs || attrs.isEmpty()) {
             activity.finish();//v1.0.1版本添加，防止没有过度元素当前Activity关闭不了，开放系统自带过度动画
             return;
@@ -147,7 +180,7 @@ public class CySharedElementTransition {
                 continue;
             }
 
-            int[] location = new int[2];
+            final int[] location = new int[2];
             view.getLocationOnScreen(location);
             view.setPivotX(0);
             view.setPivotY(0);

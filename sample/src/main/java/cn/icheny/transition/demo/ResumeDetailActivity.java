@@ -1,7 +1,6 @@
 package cn.icheny.transition.demo;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +11,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import cn.icheny.transition.CySharedElementTransition;
+import cn.icheny.transition.CyTransition;
+import cn.icheny.transition.SimpleAnimatorListener;
 
 /**
  * 简历详情
@@ -24,7 +24,7 @@ public class ResumeDetailActivity extends AppCompatActivity {
 
     ImageView iv_head;
     TextView tv_name, tv_desc, tv_age, tv_work_years, tv_experience;
-    LinearLayout ll_experienc;
+    LinearLayout ll_experience;
     View v_resume_top_bg;
     private Resume mResume;
 
@@ -55,23 +55,23 @@ public class ResumeDetailActivity extends AppCompatActivity {
         v_resume_top_bg.setPivotX(0);
         v_resume_top_bg.animate()
                 .scaleY(1)
-                .setDuration(1000)
+                .setDuration(800)
                 .start();
 
         /**
          * 履历视图进入界面
          */
-        ll_experienc.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+        ll_experience.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override
             public boolean onPreDraw() {
                 //取消监听
-                ll_experienc.getViewTreeObserver().removeOnPreDrawListener(this);
+                ll_experience.getViewTreeObserver().removeOnPreDrawListener(this);
 
-                ll_experienc.setVisibility(View.VISIBLE);
-                ll_experienc.setAlpha(0);
-                ll_experienc.setTranslationY(ll_experienc.getHeight());
-                ll_experienc.animate()
-                        .setDuration(1000)
+                ll_experience.setVisibility(View.VISIBLE);
+                ll_experience.setAlpha(0);
+                ll_experience.setTranslationY(ll_experience.getHeight());
+                ll_experience.animate()
+                        .setDuration(800)
                         .alpha(1)
                         .translationY(0)
                         .start();
@@ -83,7 +83,7 @@ public class ResumeDetailActivity extends AppCompatActivity {
         /**
          * 共享元素过渡动画
          */
-        CySharedElementTransition.runEnterAnim(this, 1000, new AnimatorListenerAdapter() {
+        CyTransition.runEnterAnim(this, 800, new SimpleAnimatorListener() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
@@ -107,7 +107,7 @@ public class ResumeDetailActivity extends AppCompatActivity {
         tv_desc = findViewById(R.id.tv_desc);
         tv_work_years = findViewById(R.id.tv_work_years);
         tv_experience = findViewById(R.id.tv_experience);
-        ll_experienc = findViewById(R.id.ll_experienc);
+        ll_experience = findViewById(R.id.ll_experience);
     }
 
     @Override
@@ -126,14 +126,14 @@ public class ResumeDetailActivity extends AppCompatActivity {
     }
 
     private void back() {
-        CySharedElementTransition.runExitAnim(this, 1000);
+        CyTransition.runExitAnim(this, 800);
 
         /**
          * 收起头背景
          */
         v_resume_top_bg.animate()
                 .scaleY(0)
-                .setDuration(1000)
+                .setDuration(800)
                 .start();
 
         /**
@@ -141,16 +141,16 @@ public class ResumeDetailActivity extends AppCompatActivity {
          */
         tv_age.setVisibility(View.GONE);
         tv_work_years.setVisibility(View.GONE);
-        ll_experienc.setVisibility(View.VISIBLE);
+        ll_experience.setVisibility(View.VISIBLE);
 
 
         /**
          * 履历视图离开界面
          */
-        ll_experienc.animate()
+        ll_experience.animate()
                 .setDuration(1200)
                 .alpha(0)
-                .translationY(ll_experienc.getHeight())
+                .translationY(ll_experience.getHeight())
                 .start();
     }
 }

@@ -11,10 +11,10 @@ import java.util.ArrayList;
  * @author www.icheny.cn
  * @date 2018.05.31
  */
-public class TransitionMaterials {
-    private ArrayList<ViewAttrs> mViewAttrs;
+class Materials {
+    private final ArrayList<ViewAttrs> mViewAttrs;
 
-    public ArrayList<ViewAttrs> getViewAttrs() {
+    ArrayList<ViewAttrs> getViewAttrs() {
         return mViewAttrs;
     }
 
@@ -23,7 +23,7 @@ public class TransitionMaterials {
      *
      * @param views
      */
-    private TransitionMaterials(@NonNull View[] views) {
+    private Materials(@NonNull View[] views) {
         mViewAttrs = new ArrayList<>();
         for (View view : views) {
             int[] location = new int[2];
@@ -32,7 +32,7 @@ public class TransitionMaterials {
         }
     }
 
-    public static TransitionMaterials createMaterials(@NonNull View... views) {
-        return new TransitionMaterials(views);
+    static Materials createMaterials(@NonNull View... views) {
+        return new Materials(views);
     }
 }

@@ -78,7 +78,7 @@
             android:textSize="14sp" />
 
         <LinearLayout
-            android:id="@+id/ll_experienc"
+            android:id="@+id/ll_experience"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/v_resume_top_bg"

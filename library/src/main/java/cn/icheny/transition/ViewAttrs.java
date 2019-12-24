@@ -9,7 +9,7 @@ import android.os.Parcelable;
  * @author www.icheny.cn
  * @date 2018.05.31
  */
-public class ViewAttrs implements Parcelable {
+class ViewAttrs implements Parcelable {
     private int id; //View's id
     private float alpha;//View's alpha value
     private int screenX;//View's X coordinate on screen
@@ -18,7 +18,7 @@ public class ViewAttrs implements Parcelable {
     private int height;//View's visible height
 
 
-    public ViewAttrs(int id, float alpha, int screenX, int screenY, int width, int height) {
+    ViewAttrs(int id, float alpha, int screenX, int screenY, int width, int height) {
         this.id = id;
         this.alpha = alpha;
         this.screenX = screenX;
@@ -28,8 +28,6 @@ public class ViewAttrs implements Parcelable {
     }
 
     /****************** Getter And Setter  Methods ******************/
-
-
     public int getId() {
         return id;
     }
@@ -102,7 +100,7 @@ public class ViewAttrs implements Parcelable {
         this.height = in.readInt();
     }
 
-    public static final Creator<ViewAttrs> CREATOR = new Creator<ViewAttrs>() {
+    public static final Parcelable.Creator<ViewAttrs> CREATOR = new Parcelable.Creator<ViewAttrs>() {
         @Override
         public ViewAttrs createFromParcel(Parcel source) {
             return new ViewAttrs(source);

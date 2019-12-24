@@ -22,7 +22,7 @@ allprojects {
 Add the dependency:
 ```xml
 dependencies {
-        implementation 'com.github.ausboyue:CySharedElementTransition:1.0.1'
+        implementation 'com.github.ausboyue:CySharedElementTransition:1.1'
 }
 ```
 
@@ -55,17 +55,17 @@ Add the dependency:
 <dependency>
     <groupId>com.github.ausboyue</groupId>
     <artifactId>CySharedElementTransition</artifactId>
-    <version>1.0.1</version>
+    <version>1.1</version>
 </dependency>
 ```
 
 # Get Started
 
-**1. ActivityA jump to ActivityB，when need use "SharedElementTransition":**
+**1. ActivityA(or FragmentA) jump to ActivityB，when need use "SharedElementTransition":**
 
-- ActivityA edit code as below:
+- ActivityA(or FragmentA) edit code as below:
 ``` java
-    CySharedElementTransition.startActivity(intent, activityA, view1, view2, view...);
+    CyTransition.startActivity(intent, activityA(or fragmentA), view1, view2, view...);
 ```
 - ActivityB edit code as below:
 ``` java
@@ -73,17 +73,17 @@ Add the dependency:
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ......
-        CySharedElementTransition.runEnterAnim(activityB);
+        CyTransition.runEnterAnim(activityB);
         ......
     }
 ```
-**2. ActivityB back to ActivityA:**
+**2. ActivityB back to ActivityA(or FragmentA):**
 
 - ActivityB edit code like this:
 ``` java
     @Override
     public void onBackPressed() {
-        CySharedElementTransition.runExitAnim(activityB);
+        CyTransition.runExitAnim(activityB);
     }
 ```
 
@@ -100,6 +100,12 @@ Cheny - @[ausboyue on GitHub](https://github.com/ausboyue/), @[www.icheny.cn](ht
 Please give me some time to update the documentation.
 
 # Release note
+
+## 1.1
+ - support Fragment
+ - simplify code
+ - upgrade library sdk
+
 ## 1.0.1
  - release version v1.0.1 
  - fix one bug
